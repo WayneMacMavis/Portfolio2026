@@ -1,0 +1,40 @@
+// src/styles/_variables.scss
+
+// 🎨 Color Palette
+$primary-color: #4a90e2;       // Accent blue
+$secondary-color: #f5f7fa;     // Light background
+$dark-bg: #0f2027;             // Hero gradient start
+$dark-bg-alt: #2c5364;         // Hero gradient end
+$text-color: #333;             // Default text
+$text-light: #e0e6ed;          // Muted text
+
+// 🖋 Typography
+$font-stack: "Inter", "Segoe UI", "Roboto", sans-serif;
+
+// 📐 Spacing & Layout
+$spacing-unit: 1rem;
+$border-radius: 4px;
+
+// 👤 Personalization
+$author-firstname: "Wayne";
+$author-surname: "Mac Mavis";
+
+// 🔧 Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button-base {
+  padding: 0.75rem 1.5rem;
+  border-radius: $border-radius;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+// Accent colors 
+$primary-color: #4a90e2; 
+$primary-color-hover: #5aa0f0; // manually chosen lighter shade
