@@ -68,7 +68,8 @@ const Navbar: React.FC = () => {
     <nav className={`navbar ${hidden ? 'hidden' : ''} ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <a href="/" className="logo">
-          PORT<span>FOLIO</span>
+          <span className="logo-port">PORT</span>
+          <span className="logo-folio">FOLIO</span>
         </a>
 
         {/* Desktop Links */}

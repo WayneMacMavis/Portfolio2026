@@ -33,7 +33,7 @@ $text-dim: #94a3b8;
 
 .hero-section {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;   // ✅ allow expansion
   width: 100vw;
   display: flex;
   align-items: center;
@@ -67,20 +67,18 @@ $text-dim: #94a3b8;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    max-width: 1500px;
+    max-width: 1200px;
     width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
     box-sizing: border-box;
 
-    // 📱 Mobile adjustments
     @media (max-width: 900px) {
       grid-template-columns: 1fr;
       text-align: center;
       padding: 0 1.25rem;
     }
 
-    // 📐 Tablet adjustments (~1200px)
     @media (max-width: 1200px) and (min-width: 901px) {
       grid-template-columns: 1fr;
       text-align: center;
@@ -194,12 +192,13 @@ $text-dim: #94a3b8;
       img {
         width: 100%;
         max-width: 450px;
+        max-height: 500px;
         height: auto;
         border-radius: 12px;
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         opacity: 0;
         animation: fadeUp 1s ease forwards, float 6s ease-in-out infinite;
-        animation-delay: 0.8s, 1.5s; // fade first, then float
+        animation-delay: 0.8s, 1.5s;
 
         @media (max-width: 900px) {
           margin-top: 2rem;
@@ -226,5 +225,41 @@ $text-dim: #94a3b8;
     .chevron {
       display: block;
     }
+  }
+}
+
+/* 📱 Mobile Landscape Fix */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero-section {
+    min-height: auto;
+    height: auto;
+    padding: 1rem;
+    align-items: flex-start;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+    justify-items: center; // ✅ center grid items
+  }
+
+  .hero-content {
+    text-align: center;   // ✅ center text and buttons
+    max-width: 100%;
+
+    h1 { font-size: 1.6rem; }
+    p { font-size: 0.9rem; }
+
+    .hero-actions {
+      justify-content: center; // ✅ center buttons
+    }
+  }
+
+  .hero-visual img {
+    max-height: 40vh;
+    max-width: 250px;
+    object-fit: contain;
+    margin: 0 auto;       // ✅ center image
   }
 }
