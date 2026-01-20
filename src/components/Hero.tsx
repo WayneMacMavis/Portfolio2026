@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="hero-section">
+    <section id='home' className="hero-section">
       <div className="hero-background" />
 
       <div className="hero-container">

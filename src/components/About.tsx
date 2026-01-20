@@ -1,69 +1,57 @@
-import React, { useEffect } from 'react';
-import aboutVisual from '../assets/about-visual.png';
+import React from 'react';
 import '../styles/About.scss';
+import headshot from '../assets/about-visual.png';
 
 const About: React.FC = () => {
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      document.documentElement.style.setProperty('--scroll-offset', `${scrollY * 0.15}px`);
-    };
+  const skills: string[] = ['React 19', 'TypeScript', 'SCSS', 'Node.js', 'Framer Motion', 'AWS'];
 
-    let rafId: number | null = null;
-    let mouseX = 0;
-    let mouseY = 0;
-
-    const updateMouseVars = () => {
-      const { innerWidth, innerHeight } = window;
-      const x = (mouseX / innerWidth - 0.5) * 30;
-      const y = (mouseY / innerHeight - 0.5) * 30;
-      document.documentElement.style.setProperty('--mouse-x', `${x}px`);
-      document.documentElement.style.setProperty('--mouse-y', `${y}px`);
-      rafId = null;
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (rafId === null) {
-        rafId = requestAnimationFrame(updateMouseVars);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (rafId !== null) cancelAnimationFrame(rafId);
-    };
-  }, []);
+  // Generate 30 stars
+  const stars = Array.from({ length: 30 });
 
   return (
-    <section className="about-section" id="about">
+    <section className="about-section">
+      {/* Glow background */}
       <div className="about-background" />
 
+      {/* Stars layer */}
+      <div className="starfield">
+        {stars.map((_, i) => (
+          <div key={i} className="star" style={{ animationDelay: `${i * 0.2}s` }} />
+        ))}
+      </div>
+
       <div className="about-container">
-        <div className="about-content">
-          <div className="about-badge">Crafting with Care</div>
-          <h2>
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <p>
-            I’m a detail‑oriented developer passionate about building cinematic, interactive web apps. 
-            My focus is on scalable architecture, polished design systems, and meaningful user experiences. 
-            From startups to enterprises, I deliver solutions that balance creativity with technical rigor.
-          </p>
-          <p>
-            Beyond code, I thrive on collaboration — clarifying goals, iterating with precision, and 
-            ensuring every project feels premium and purposeful.
-          </p>
+        <div className="about-visual">
+          <div className="image-wrapper">
+            <img src={headshot} alt="Professional Portrait" />
+            <div className="image-overlay" />
+          </div>
         </div>
 
-        <div className="about-visual">
-          <img src={aboutVisual} alt="Abstract illustration representing collaboration and design" />
+        <div className="about-content">
+          <div className="about-badge">Full-Stack Engineer</div>
+          <h2>
+            Building <span className="gradient-text">Digital</span> Experiences Since 2020.
+          </h2>
+          <p className="bio">
+            I'm a Full-Stack Engineer focused on crafting high-performance, accessible 
+            web applications. My philosophy is rooted in "clean code, creative solutions"—
+            bridging the gap between aesthetic design and robust backend architecture.
+          </p>
+
+          <div className="tech-stack">
+            {skills.map((skill, i) => (
+              <div key={skill} className="tech-pill" style={{ animationDelay: `${0.6 + i * 0.1}s` }}>
+                {skill}
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
+
+      {/* Scroll cue */}
+      <div className="scroll-cue">
+        <span className="chevron">⌄</span>
       </div>
     </section>
   );
